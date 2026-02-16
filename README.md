@@ -9,20 +9,7 @@ You can pass arguments to the `updater` script as the template path, output path
 
 The flow is the following:
 
-```
-html template file
-        │  
-┌─────────────────┐         ┌─────────────────┐
-│     updater     │         │      nginx      │
-│     (bash)      │         │                 │
-│                 │         │                 │
-│  fetch jokes    │         │   serve HTML    │
-│  write HTML ────┼────────▶│                 │
-└─────────────────┘         └─────────────────┘
-         │                          │
-         └──────── /html ───────────┘
-              (shared volume)
-```
+![jokes diagram](./images/jokes-diagram.png)
 
 The challenge was to actually make nginx not run as root, and not update back permissions to the default `index.html` file fron it.
 
