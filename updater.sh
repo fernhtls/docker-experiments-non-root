@@ -1,5 +1,5 @@
 #!/bin/bash
-# Usage: updater <HTML_TEMPLATE_FILE> <HTML_OUTPUT_FILE> <SLEEP INTERVAL>
+# Usage: updater.sh <HTML_TEMPLATE_FILE> <HTML_OUTPUT_FILE> <SLEEP INTERVAL>
 #
 # Updater for our joker generator
 # Reads the template html file and replaces with the new curl
