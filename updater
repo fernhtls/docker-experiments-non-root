@@ -1,0 +1,30 @@
+#!/bin/bash
+# Usage: updater <HTML_TEMPLATE_FILE> <HTML_OUTPUT_FILE> <SLEEP INTERVAL>
+#
+# Updater for our joker generator
+# Reads the template html file and replaces with the new curl
+# API call for the joke to a new file
+# HTML_TEMPLATE_FILE can be passed as argument
+# HTML_OUTPUT_FILE can be passed as an argument
+
+API_URL="https://icanhazdadjoke.com/"
+HTML_TEMPLATE_FILE="${1:-/html/index-template.html}"
+HTML_OUTPUT_FILE="${2:-/output/index.html}"
+SLEEP=${3:-30}
+
+if ! [[ -f $HTML_OUTPUT_FILE ]]; then
+	touch "$HTML_OUTPUT_FILE"
+fi
+
+echo "Starting joke updater..."
+
+while true; do
+  # Fetch a random dad joke
+  JOKE=$(curl -s "$API_URL" -H "Accept: text/plain" | tr '\n' ' ')
+  sed \
+	  -e "s|%%JOKE%%|${JOKE}|g" \
+	  -e "s|%%DATE%%|$(date)|g" \
+	  "$HTML_TEMPLATE_FILE" > "$HTML_OUTPUT_FILE"
+  echo "$(date) - Updated joke: $JOKE"
+  sleep "$SLEEP"
+done
