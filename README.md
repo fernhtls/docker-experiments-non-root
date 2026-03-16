@@ -3,7 +3,7 @@
 This sample contains docker-compose / podman-compose services intended to:
 * Call an url to get some dad jokes.
 * Update a templated html file with the new content.
-* Present it on `localhost:8080` throught `nginx`.
+* Expose it on `localhost:8080` throught `nginx`.
 
 You can pass arguments to the `updater.sh` script as the template path, output path and sleep interval for it.
 
